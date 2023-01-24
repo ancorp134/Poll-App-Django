@@ -11,7 +11,7 @@ def Create_Poll(request):
         form = QuestionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            # return redirect('home')
     return render(request, 'create_poll.html', {'form': form})
     
     

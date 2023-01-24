@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'app.CustomUser'
 
 # Application definition
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'app',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
