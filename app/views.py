@@ -28,3 +28,6 @@ def Create_Poll(request):
     return render(request, 'create_poll.html', {'form': form})
     
     
+
+def profile_view(request):
+    return render(request , 'accounts/profile.html')
