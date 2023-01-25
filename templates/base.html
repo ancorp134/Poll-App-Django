@@ -1,1 +1,10 @@
+
+
+
+
 <h1>Hello User</h1>
+
+{% for ques in question %}
+  <h4> {{ques.question}} <span>created by - <a href="{% url 'profile' %}">{{ques.user.name}}</a> </span> </h4>
+
+{% endfor %}

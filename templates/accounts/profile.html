@@ -8,4 +8,17 @@
 <h3>{{request.user.phone_num}}</h3>
 
 
+<h1>created poll</h1>
+
+ {% for ques in question %}
+
+ <h4> {{ques.question}}</h4>
+
+ {% endfor %}
+
+<a href=" {%  url 'create_poll' %} "> create_poll </a>
+
+<!-- {{mssg}} -->
+
+
 {% endblock content  %}

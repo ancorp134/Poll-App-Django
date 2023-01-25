@@ -63,7 +63,7 @@ class Question(models.Model):
     choice2 = models.CharField(max_length=200)
     choice3 = models.CharField(max_length=200)
     choice4 = models.CharField(max_length=200)
-    user = models.ForeignKey(User , on_delete =models.CASCADE)
+    user = models.ForeignKey(User,on_delete =models.CASCADE)
 
     def __str__(self):
         return self.question
