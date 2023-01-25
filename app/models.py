@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager , AbstractBaseUser
+from django.contrib.auth.hashers import make_password
 
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
@@ -13,7 +14,7 @@ class CustomUserManager(BaseUserManager):
         if not email:
             raise ValueError('Users must have an email address')
         user = self.model(email=self.normalize_email(email), **extra_fields)
-        user.set_password(password)
+        user.set_password(make_password(password))
         user.save(using=self._db)
         return user
     
@@ -29,11 +30,24 @@ class CustomUser(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     phone_num = models.CharField(max_length=10)
+    password = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     objects = CustomUserManager()
     USERNAME_FIELD = 'email'
+
+
+    def __str__(self):
+        return self.email
+
+    def set_password(self,password):
+        self.password = make_password(password)
+
+    
+    def save(self , *args , **kwargs):
+        self.set_password(self.password)
+        super().save(*args , **kwargs)
 
     def has_perm(self, perm, obj=None):
         return self.is_superuser
